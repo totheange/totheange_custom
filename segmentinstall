@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Segment Install Page</title>
+  <style>
+  #crookshanks {
+  color: orange;
+  }
+  </style>
+</head>
+
+<body>
+  <h1> Segment Install Page </h1>
+  <div id="Crookshanks">
+  <h2> Motivation </h2>
+  <p> Image goes here </p>
+  </div>
+ <!-- Pendo snippet -->
+ 
+  <!-- End of Pendo snippet -->
+</body>
+<footer>
+  <a href="/totheange_custom/"> Back to Main Page</a>
+</footer>
+</html>

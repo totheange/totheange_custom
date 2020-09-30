@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Pendo snippet -->
+  <script>
+var random_number = Math.floor(Math.random()*500000+100000);
+var accountArray= ["Dahlia Corp", "Tulip Inc", "Lavender Associates"];
+var random_account= accountArray[Math.floor(Math.random()*accountArray.length)];
+(function(apiKey){
+    (function(p,e,n,d,o){var v,w,x,y,z;o=p[d]=p[d]||{};o._q=[];
+    v=['initialize','identify','updateOptions','pageLoad'];for(w=0,x=v.length;w<x;++w)(function(m){
+        o[m]=o[m]||function(){o._q[m===v[0]?'unshift':'push']([m].concat([].slice.call(arguments,0)));};})(v[w]);
+        y=e.createElement(n);y.async=!0;y.src='https://pendo-io-static.storage.googleapis.com/agent/static/'+apiKey+'/pendo.js';
+        z=e.getElementsByTagName(n)[0];z.parentNode.insertBefore(y,z);})(window,document,'script','pendo');
+
+        // Call this whenever information about your visitors becomes available
+        // Please use Strings, Numbers, or Bools for value types.
+        pendo.initialize({
+            visitor: {
+                id:'DefaultLocallyHostedUserTestSept',
+                email: 'Angela Holly_Wed@gmail.com',
+                AnotherNumber:'1',
+                guidelanguage:'en_US', // Required if user is logged in
+
+                // role:         // Optional
+
+                // You can add any additional visitor level key-values here,
+                // as long as it's not one of the above reserved names.
+            },
+
+            account: {
+                id: random_account,// Highly recommended
+                // name:         // Optional
+                // is_paying:    // Recommended if using Pendo Feedback
+                // monthly_value:// Recommended if using Pendo Feedback
+                // planLevel:    // Optional
+                // planPrice:    // Optional
+                // creationDate: // Optional
+
+                // You can add any additional account level key-values here,
+                // as long as it's not one of the above reserved names.
+            }
+        });
+})('9740cfed-3e94-4620-7134-82d8dfb4e66d');
+</script>
+
+   <!-- End of Pendo snippet -->
+  <title>Angela's Reading Page</title>
+</head>
+
+<body style="font-family:'Comic Sans MS', cursive, sans-serif;">
+  <h1> Welcome to Angela's Library </h1>
+  <p> This is a copy of her locally hosted site. Sub: alh_demo. App: Alh_demo (local) </p>
+  <br><br>
+
+  <h2> <a href="currentread.html"> Books I am currently Reading</a></h2>
+  <h2> <a href="readnext.html"> Books I want to Read Next </a></h2>
+  <h2>Favorite Authors</h2>
+  <h2> Favorite Books</h2>
+  <h3> Feedback Test </h3>
+   <a href="#" onclick="pendo.feedback.openFeedback(event)">Submit an enhancement request</a>
+
+<div>
+  <span>This is a Span. Do we capture this data?</span>
+  <button type="button">TEST BUTTON TO SEE DEFAULT FONT For BUttons!</button>
+</div>
+
+</body>
+
+
+</html>

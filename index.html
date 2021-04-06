@@ -44,7 +44,32 @@ var random_account= accountArray[Math.floor(Math.random()*accountArray.length)];
 })('14c13183-f8b2-4cc9-6794-d0c979a4f01a');
 </script>
   <!-- End of Pendo snippet -->
-    <!-- CSS for dropdown -->
+  
+  <!-- JS for dropdown -->
+  <script>
+  /* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}  
+  </script>
+  <!-- end of JS for dropdown -->
+    
+  <!-- CSS for dropdown -->
 <style>
   /* Dropdown Button */
 .dropbtn {

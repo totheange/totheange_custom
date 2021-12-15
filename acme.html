@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="robots" content="noindex" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet" />
+  <script defer="defer" src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+  <script>
+    navigator.serviceWorker && (console.log("Searching for service worker..."), navigator.serviceWorker.getRegistrations().then(e => {
+      for (let r of e) console.log("Service worker found, attempting unregistration..."), r.unregister()
+    }).catch(e => {
+      console.log("Unable to unregister service worker. Failed with error:", e)
+    }));
+    const urlParams = new URLSearchParams(window.location.search),
+      disablePendo = "true" === urlParams.get("disablePendo"),
+      urlVisitor = urlParams.get("visitor"),
+      urlAccount = urlParams.get("account"),
+      urlRole = urlParams.get("role"),
+      visitors = ["Michael", "Christopher", "Jessica", "Matthew", "Ashley", "Jennifer", "Joshua", "Amanda", "Daniel", "David", "James", "Robert", "John", "Joseph", "Andrew", "Ryan", "Sarah", "Stephanie", "Rachel", "Erika", "Thomas", "Sonya", "Bill",
+        "Tyrone", "Denise", "Brian", "Adam", "Megan", "Eric", "Elizabeth", "Anthony", "Nicole", "Kevin", "Melissa", "Kevin", "Laura", "Kyle", "Kayla", "Amber", "Richard", "Kim", "Jeff", "Amy", "Michelle", "Benjamin", "Mark", "Emily", "Aaron",
+        "Charles", "Rebecca", "Jamie", "Erin", "Zachary", "Sean", "Mary", "Kelly", "Paul", "Dustin", "Travis", "Gregory", "Andrea", "Angela", "Bryan", "Shane", "Todd", "George", "Phillip", "Stacy", "Joanna", "Jasmine", "Brooke", "Felicity", "Tony",
+        "Nancy", "Kate", "Jillian", "Jerry", "Luke", "Maria", "Cody", "Allison", "Peter", "Jordan", "Natalie", "Holly", "Jared", "Anna", "Caroline", "Amalia", "Donald", "Micah", "Marvin", "Levi", "Brad", "Taryn", "Toni", "Jessie", "Ronnie", "Ruth",
+        "Adriana", "Darryl", "Mayra", "Ralph", "Elena", "Anita", "Jane", "Simon", "Eli", "Quentin", "Collin", "Dallas", "Lamar", "Lebron", "Francisco", "DwayneTheRock", "Rudy", "Rosemary", "Marlin", "Dory", "Glen", "Dipper"
+      ],
+      roles = ["user", "admin", "read-only"],
+      accounts = ["Soylent Corp", "Wonka Industries", "Dharma Initiative", "Waynes World", "Parker Industries", "Oceanic", "Rearden Steal", "InGen", "Oscorp", "Purrada", "Rent A Swag", "Space Y", "Pixel Arts", "Vinepoly", "Cloudworks",
+        "Chief Aviation", "Sphere Co", "Altair Corp", "Vega Corp", "Deneb Corp", "Shade Arts", "Lion Security", "Jupiter Brews", "Jetlife", "Herolutions", "Sphinx Solutions", "WhiteBox Inc", "Rosefly", "Dinoco", "Silver Shamrock", "Bushwood",
+        "HAL Labs", "Mugatu Industries", "Pizza Planet", "Rex Kwan Do", "Macmillan", "Empire Industries"
+      ],
+      oldAccounts = ["Stark Industries", "Wayne Enterprises", "Hooli", "Dunder Mifflin US", "Pied Piper", "Dunder Mifflin EU", "Associated Strategies", "Sterling Cooper", "Ewing Oil", "Prestige Worldwide", "TelAmeriCorp", "TakeOff",
+        "Burnham and Root", "Outer Inc", "One World", "Cadence", "WorryFree Inc", "BlueLine", "Raptor Inc", "Arrowhead", "Moonlight Inc", "BlueRibbon", "LightSpeed", "Imaginary Inc", "Pluto Corp", "Hyperion", "BlackBox Inc", "Eco Focus",
+        "Innovation Arch", "Strat Security", "Inspire Fitness Co", "Candor Corp", "Cogent Data", "Epic Adventure Inc", "Sanguine Skincare", "Vortex Solar", "Admire Arts"
+      ];
+    let visitor, role, accString, account_id;
+    const randomRoll = getRandomArbitrary(0, 3);
+
+    function getDateBasedVisitorId(e) {
+      const r = getRandomArbitrary(0, 3),
+        i = getRandomArbitrary(0, 2);
+      let a = "";
+      switch ((e || new Date).getDay()) {
+        case 1:
+          a = visitors[getRandomArbitrary(0, visitors.length)], visitor = `${a}${calcPrevDate(0)}@`;
+          break;
+        case 2:
+          r < 2 ? (a = visitors[getRandomArbitrary(0, 90)], visitor = `${a}${calcPrevDate(8)}@`) : (a = visitors[getRandomArbitrary(0, 60)], visitor = `${a}${calcPrevDate(29)}@`);
+          break;
+        case 3:
+          i < 1 ? (a = visitors[getRandomArbitrary(0, 80)], visitor = `${a}${calcPrevDate(16)}@`) : (a = visitors[getRandomArbitrary(0, 50)], visitor = `${a}${calcPrevDate(58)}@`);
+          break;
+        case 4:
+          i < 1 ? (a = visitors[getRandomArbitrary(0, 70)], visitor = `${a}${calcPrevDate(24)}@`) : (a = visitors[getRandomArbitrary(0, 45)], visitor = `${a}${calcPrevDate(87)}@`);
+          break;
+        case 5:
+          i < 1 ? (a = visitors[getRandomArbitrary(0, 60)], visitor = `${a}${calcPrevDate(32)}@`) : (a = visitors[getRandomArbitrary(0, 40)], visitor = `${a}${calcPrevDate(116)}@`);
+          break;
+        case 6:
+          i < 1 ? (a = visitors[getRandomArbitrary(0, 50)], visitor = `${a}${calcPrevDate(40)}@`) : (a = visitors[getRandomArbitrary(0, 35)], visitor = `${a}${calcPrevDate(145)}@`);
+          break;
+        case 0:
+          i < 1 ? (a = visitors[getRandomArbitrary(0, 40)], visitor = `${a}${calcPrevDate(48)}@`) : (a = visitors[getRandomArbitrary(0, 30)], visitor = `${a}${calcPrevDate(174)}@`)
+      }
+      return role = roles[visitors.indexOf(a) % roles.length], account_id = accounts[visitors.indexOf(a) % accounts.length], accString = account_id.replace(/\s/g, ""), visitor = `${visitor}${accString}.com`, visitor
+    }
+
+    function getVisitorId(e) {
+      const r = 100 * Math.random();
+      return r < 25 ? (visitor = `visitor1@${e}.com`, role = "admin") : r <= 50 ? (visitor = `visitor6@${e}.com`, role = "admin") : r <= 65 ? (visitor = `visitor4@${e}.com`, role = "user") : r <= 80 ? (visitor = `visitor7@${e}.com`, role = "user") :
+        r <= 90 ? (visitor = `visitor5@${e}.com`, role = "user") : r <= 95 ? (visitor = `visitor3@${e}.com`, role = "read-only") : (visitor = `visitor2@${e}.com`, role = "read-only"), visitor
+    }
+
+    function getRandomArbitrary(e, r) {
+      return Math.floor(Math.random() * (r - e) + e)
+    }
+
+    function calcPrevDate(e) {
+      const r = new Date,
+        i = new Date(r.getFullYear(), r.getMonth(), r.getDate() - e),
+        a = i.getMonth() + 1,
+        t = i.getDate(),
+        o = `${a<10?"0":""}${a}${t<10?"0":""}${t}${i.getFullYear()-2e3}`;
+      return calcDate = o, o
+    }
+    if (randomRoll > 2 ? (account_id = oldAccounts[Math.floor(Math.random() * accounts.length)], accString = account_id.replace(/\s/g, ""), getVisitorId(accString)) : getDateBasedVisitorId(), account_id = urlAccount || account_id, visitor =
+      `${urlVisitor||visitor.slice(0,visitor.indexOf("@"))}@${account_id.replace(/\s/g,"")}.com`, role = urlRole || role, window.userInfo = {
+        account: account_id,
+        visitor: visitor.slice(0, visitor.indexOf("@")),
+        visitorId: visitor,
+        role: role
+      }, !disablePendo) {
+      ! function(e, r, i, a, t) {
+        var o, n, s, c, l;
+        for ((t = e[a] = e[a] || {})._q = [], n = 0, s = (o = ["initialize", "identify", "updateOptions", "pageLoad"]).length; n < s; ++n) ! function(e) {
+          t[e] = t[e] || function() {
+            t._q[e === o[0] ? "unshift" : "push"]([e].concat([].slice.call(arguments, 0)))
+          }
+        }(o[n]);
+        (c = r.createElement(i)).async = !0, c.src = "https://cdn.pendo.io/agent/static/'+apiKey+'/pendo.js", (l = r.getElementsByTagName(i)[0]).parentNode.insertBefore(c, l)
+      }(window, document, "script", "pendo"), pendo.initialize({
+        visitor: {
+          id: visitor || "VISITOR-UNIQUE-ID",
+          role: role || "user"
+        },
+        account: {
+          id: account_id || "ACCOUNT-UNIQUE-ID"
+        }
+      });
+    })('9740cfed-3e94-4620-7134-82d8dfb4e66d');
+</script>
+  <title>acmeCRM</title>
+  <link href="/static/css/2.c9f37a17.chunk.css" rel="stylesheet">
+  <link href="/static/css/main.29eee9c5.chunk.css" rel="stylesheet">
+</head>
+
+<body><noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="exit-intent"></div>
+  <div id="root"></div>
+  <script>
+    ! function(e) {
+      function r(r) {
+        for (var n, l, a = r[0], c = r[1], p = r[2], i = 0, s = []; i < a.length; i++) l = a[i], Object.prototype.hasOwnProperty.call(o, l) && o[l] && s.push(o[l][0]), o[l] = 0;
+        for (n in c) Object.prototype.hasOwnProperty.call(c, n) && (e[n] = c[n]);
+        for (f && f(r); s.length;) s.shift()();
+        return u.push.apply(u, p || []), t()
+      }
+
+      function t() {
+        for (var e, r = 0; r < u.length; r++) {
+          for (var t = u[r], n = !0, a = 1; a < t.length; a++) {
+            var c = t[a];
+            0 !== o[c] && (n = !1)
+          }
+          n && (u.splice(r--, 1), e = l(l.s = t[0]))
+        }
+        return e
+      }
+      var n = {},
+        o = {
+          1: 0
+        },
+        u = [];
+
+      function l(r) {
+        if (n[r]) return n[r].exports;
+        var t = n[r] = {
+          i: r,
+          l: !1,
+          exports: {}
+        };
+        return e[r].call(t.exports, t, t.exports, l), t.l = !0, t.exports
+      }
+      l.m = e, l.c = n, l.d = function(e, r, t) {
+        l.o(e, r) || Object.defineProperty(e, r, {
+          enumerable: !0,
+          get: t
+        })
+      }, l.r = function(e) {
+        "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(e, Symbol.toStringTag, {
+          value: "Module"
+        }), Object.defineProperty(e, "__esModule", {
+          value: !0
+        })
+      }, l.t = function(e, r) {
+        if (1 & r && (e = l(e)), 8 & r) return e;
+        if (4 & r && "object" == typeof e && e && e.__esModule) return e;
+        var t = Object.create(null);
+        if (l.r(t), Object.defineProperty(t, "default", {
+            enumerable: !0,
+            value: e
+          }), 2 & r && "string" != typeof e)
+          for (var n in e) l.d(t, n, function(r) {
+            return e[r]
+          }.bind(null, n));
+        return t
+      }, l.n = function(e) {
+        var r = e && e.__esModule ? function() {
+          return e.default
+        } : function() {
+          return e
+        };
+        return l.d(r, "a", r), r
+      }, l.o = function(e, r) {
+        return Object.prototype.hasOwnProperty.call(e, r)
+      }, l.p = "/";
+      var a = this["webpackJsonppe-acme-crm"] = this["webpackJsonppe-acme-crm"] || [],
+        c = a.push.bind(a);
+      a.push = r, a = a.slice();
+      for (var p = 0; p < a.length; p++) r(a[p]);
+      var f = c;
+      t()
+    }([])
+  </script>
+  <script src="/static/js/2.3ca1853b.chunk.js"></script>
+  <script src="/static/js/main.7000ee64.chunk.js"></script>
+</body>
+
+</html>

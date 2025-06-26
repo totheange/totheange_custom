@@ -40,7 +40,8 @@ var random_account= accountArray[Math.floor(Math.random()*accountArray.length)];
 
                 // You can add any additional account level key-values here,
                 // as long as it's not one of the above reserved names.
-            }
+            },
+          frameIdentitySync: true,
         });
 })('9740cfed-3e94-4620-7134-82d8dfb4e66d');
 </script>
@@ -59,7 +60,8 @@ var random_account= accountArray[Math.floor(Math.random()*accountArray.length)];
   <span>This is a Span. Do we capture this data?</span>
   <button type="button">TEST BUTTON TO SEE DEFAULT FONT For BUttons!</button>
 </div>
-
+ <h1> This is my top frame. Inside this is another iFrame </h1>
+  <iframe src="http://localhost:8080/" width="90%" height="800px" background-color="blue">Hello</iframe>
 </body>
 
 

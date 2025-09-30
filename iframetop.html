@@ -45,11 +45,46 @@ var random_account= accountArray[Math.floor(Math.random()*accountArray.length)];
 
 
    <!-- End of Pendo snippet -->
+  <style>
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      color: white;
+    }
+    /* Different random colors */
+    .btn1 {
+      background-color: teal;
+    }
+    .btn1:hover {
+      background-color: darkcyan;
+    }
+
+    .btn2 {
+      background-color: purple;
+    }
+    .btn2:hover {
+      background-color: indigo;
+    }
+
+    .btn3 {
+      background-color: orange;
+    }
+    .btn3:hover {
+      background-color: darkorange;
+    }
+  </style>
   <title>Angela's iFrame</title>
 </head>
 
 <body style="background-color: lightgreen;">
-  <h1> This is my top frame in light green. Inside this is another iFrame with a white background </h1>
+  <h1> This is my top frame in light green. Inside this is another iFrame with a white background </h1> 
+   <button class="btn1">Alpha</button>
+  <button class="btn2">Beta</button>
+  <button class="btn3">Gamma</button>
   <iframe src="https://totheange.github.io/totheange_custom/readnext.html" width="90%" height="800px" background-color="blue">Hello</iframe>
 
 </body>
